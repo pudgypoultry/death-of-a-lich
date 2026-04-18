@@ -1,0 +1,38 @@
+[gd_scene format=3 uid="uid://d2lfw4kld3081"]
+
+[ext_resource type="Script" uid="uid://cf14hx114eyup" path="res://Scenes/Slots/SlotManager.gd" id="1_0bkxv"]
+[ext_resource type="PackedScene" uid="uid://bpsn02b0feld4" path="res://Scenes/Slots/Slot.tscn" id="3_bybq8"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6xnmj"]
+albedo_color = Color(0, 0.0022063968, 0.27499998, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_0bkxv"]
+material = SubResource("StandardMaterial3D_6xnmj")
+size = Vector3(1.5, 0.2, 1.5)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jm3vu"]
+size = Vector3(1.5, 0.2, 1.5)
+
+[node name="Box" type="StaticBody3D" unique_id=341623789]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2145101217]
+mesh = SubResource("BoxMesh_0bkxv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1412156392]
+shape = SubResource("BoxShape3D_jm3vu")
+
+[node name="SlotManager" type="Node3D" parent="." unique_id=1598700472 node_paths=PackedStringArray("spawn_position")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3561592, -0.62575054)
+script = ExtResource("1_0bkxv")
+valid_tags = Array[int]([3, 0])
+slot_scene = ExtResource("3_bybq8")
+spawn_position = NodePath("Marker3D")
+
+[node name="Marker3D" type="Marker3D" parent="SlotManager" unique_id=1721229980]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.19834828, 0)
+
+[node name="Slot" parent="SlotManager" unique_id=1068460232 instance=ExtResource("3_bybq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.73152804, -0.19834828, 0)
+
+[node name="Slot2" parent="SlotManager" unique_id=1275162360 instance=ExtResource("3_bybq8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7124908, -0.19834828, 0)

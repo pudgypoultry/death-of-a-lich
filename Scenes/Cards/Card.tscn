@@ -1,0 +1,52 @@
+[gd_scene format=3 uid="uid://tem3bauml736"]
+
+[ext_resource type="Script" uid="uid://d18yjicny3adv" path="res://Scenes/Cards/AbstractCard.gd" id="1_21rx5"]
+[ext_resource type="Script" uid="uid://d3bxcsocp82vp" path="res://Scenes/GeneralComponents/DragAndDropComponent.gd" id="1_dd2wi"]
+[ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="2_3ujke"]
+[ext_resource type="Script" uid="uid://dyvcxxb5jcjdp" path="res://Scenes/Slots/SlottableComponent.gd" id="2_hael8"]
+[ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="3_7mr5f"]
+
+[sub_resource type="Resource" id="Resource_wi8ie"]
+script = ExtResource("2_3ujke")
+card_name = "Test card"
+tags = Array[int]([3, 7])
+rank = 5
+card_type = 2
+metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ujke"]
+size = Vector3(0.625, 0.05, 0.875)
+
+[node name="Card" type="StaticBody3D" unique_id=1113380369 node_paths=PackedStringArray("card_faces")]
+script = ExtResource("1_21rx5")
+slottable_data = SubResource("Resource_wi8ie")
+card_faces = NodePath("CardFaces")
+
+[node name="CardFaces" type="Node3D" parent="." unique_id=848404760]
+
+[node name="Front" type="Sprite3D" parent="CardFaces" unique_id=13997403]
+transform = Transform3D(0.06282218, 0, 0, 0, 1, 0, 0, 0, 0.06282218, 0, 0.005, 0)
+axis = 1
+texture = ExtResource("3_7mr5f")
+
+[node name="Back" type="Sprite3D" parent="CardFaces" unique_id=400759521]
+transform = Transform3D(0.06282218, 0, 0, 0, 1, 0, 0, 0, 0.06282218, 0, -0.005, 0)
+axis = 1
+texture = ExtResource("3_7mr5f")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273998511]
+shape = SubResource("BoxShape3D_3ujke")
+
+[node name="CheckRay" type="RayCast3D" parent="." unique_id=920081280]
+target_position = Vector3(0, -50, 0)
+collision_mask = 3
+debug_shape_custom_color = Color(1, 0.08833516, 0.8693514, 1)
+
+[node name="DragAndDropNode" type="Node" parent="." unique_id=429295298 node_paths=PackedStringArray("check_ray")]
+script = ExtResource("1_dd2wi")
+check_ray = NodePath("../CheckRay")
+pickup_height = 1.0
+debug = true
+
+[node name="SlottableNode" type="Node" parent="." unique_id=329753460]
+script = ExtResource("2_hael8")

@@ -1,0 +1,4 @@
+Wood Shader - Merovingen - https://godotshaders.com/shader/stylized-wood-surface/
+Woolen Cloth - wojtekpil - Material Maker
+Simple Stone - Hallownests_fool - Material Maker
+Find wooden plank later

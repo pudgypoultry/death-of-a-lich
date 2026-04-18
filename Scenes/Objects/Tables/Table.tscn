@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://dvk2ndec1swtf"]
+
+[ext_resource type="Material" uid="uid://divi5h45u0u2w" path="res://Assets/Materials/Cloth/WoolCloth.tres" id="3_e5k7x"]
+[ext_resource type="Material" uid="uid://bwpv65xpwqlv2" path="res://Assets/Materials/Wood/DarkWood.tres" id="3_rkn1e"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bpwsg"]
+size = Vector3(15, 0.21, 10.593)
+
+[sub_resource type="BoxMesh" id="BoxMesh_e5k7x"]
+material = ExtResource("3_rkn1e")
+size = Vector3(15, 0.21, 10.593)
+
+[sub_resource type="QuadMesh" id="QuadMesh_5fgwc"]
+material = ExtResource("3_e5k7x")
+size = Vector2(9, 12)
+orientation = 1
+
+[node name="Table" type="StaticBody3D" unique_id=1240822494]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2060172458]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.011962891)
+shape = SubResource("BoxShape3D_bpwsg")
+
+[node name="TablePlanks" type="MeshInstance3D" parent="." unique_id=556039770]
+mesh = SubResource("BoxMesh_e5k7x")
+
+[node name="Mat" type="MeshInstance3D" parent="." unique_id=877152868]
+transform = Transform3D(8.176422e-08, 0, 1.1529112, 0, 1.048, 0, -1.083, 0, 8.704237e-08, 0, 0.15979528, 0.20444226)
+mesh = SubResource("QuadMesh_5fgwc")

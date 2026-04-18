@@ -1,0 +1,46 @@
+[gd_scene format=3 uid="uid://bpsn02b0feld4"]
+
+[ext_resource type="Script" uid="uid://dvx3y3ayopf6b" path="res://Scenes/Slots/SlotComponent.gd" id="1_0bkxv"]
+[ext_resource type="Script" uid="uid://dgk7h3vn2i1r3" path="res://Scenes/Slots/AbstractSlot.gd" id="1_jm3vu"]
+[ext_resource type="Shader" uid="uid://bhdst7tesecek" path="res://Assets/Shaders/Outline.gdshader" id="2_speaj"]
+[ext_resource type="Script" uid="uid://dv6lhcky7u8re" path="res://Scenes/GeneralComponents/HighlightComponent.gd" id="5_t6x3v"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jm3vu"]
+resource_local_to_scene = true
+transparency = 1
+albedo_color = Color(0.4392157, 0.2901961, 0.2784314, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gaqdb"]
+material = SubResource("StandardMaterial3D_jm3vu")
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jgjqi"]
+size = Vector3(1, 0.05, 1)
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_t6x3v"]
+render_priority = 0
+shader = ExtResource("2_speaj")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/size = 1.05
+
+[node name="Slot" type="StaticBody3D" unique_id=1068460232 node_paths=PackedStringArray("slot_position")]
+script = ExtResource("1_jm3vu")
+slot_position = NodePath("SlotPosition")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1240622776]
+mesh = SubResource("BoxMesh_gaqdb")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=979845482]
+shape = SubResource("BoxShape3D_jgjqi")
+
+[node name="SlotPosition" type="Marker3D" parent="." unique_id=1773830367]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.40778303, 0)
+
+[node name="SlotComponent" type="Node" parent="." unique_id=1069148624]
+script = ExtResource("1_0bkxv")
+valid_tags = Array[int]([3, 0])
+metadata/_custom_type_script = "uid://dvx3y3ayopf6b"
+
+[node name="HighlightComponent" type="Node" parent="." unique_id=1115099638]
+script = ExtResource("5_t6x3v")
+highlight_material = SubResource("ShaderMaterial_t6x3v")

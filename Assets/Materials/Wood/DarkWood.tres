@@ -1,0 +1,22 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bwpv65xpwqlv2"]
+
+[ext_resource type="Texture2D" uid="uid://dxkguhqk2ks58" path="res://Assets/Materials/Wood/DarkWood_albedo.png" id="1"]
+[ext_resource type="Texture2D" uid="uid://ddljms8g64gx" path="res://Assets/Materials/Wood/DarkWood_orm.png" id="2"]
+[ext_resource type="Texture2D" uid="uid://rnpqdt7l3h1i" path="res://Assets/Materials/Wood/DarkWood_normal.png" id="3"]
+
+[resource]
+render_priority = -3
+transparency = 1
+diffuse_mode = 3
+specular_mode = 1
+disable_ambient_light = true
+albedo_color = Color(0.23750001, 0.18017244, 0.024568966, 1)
+albedo_texture = ExtResource("1")
+roughness_texture = ExtResource("2")
+roughness_texture_channel = 1
+normal_enabled = true
+normal_scale = 5.07
+normal_texture = ExtResource("3")
+ao_enabled = true
+ao_texture = ExtResource("2")
+uv1_scale = Vector3(5.35, 2.5, 1)

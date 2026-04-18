@@ -1,0 +1,14 @@
+[gd_resource type="StandardMaterial3D" format=2]
+
+[ext_resource type="Texture" path="./CandleWax_albedo.png" id="1"]
+[ext_resource type="Texture" path="./CandleWax_orm.png" id="2"]
+[resource]
+albedo_color = Color(0.886719, 0.886719, 0.886719, 1)
+albedo_texture = ExtResource( 1 )
+metallic = 0
+roughness = 1
+roughness_texture = ExtResource( 2 )
+roughness_texture_channel = 1
+
+
+

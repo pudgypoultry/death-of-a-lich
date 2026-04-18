@@ -1,0 +1,5 @@
+[gd_scene format=3 uid="uid://cc6k6aea8epqq"]
+
+[ext_resource type="PackedScene" uid="uid://c6rlrk4pnyklj" path="res://Scenes/Objects/Candle/CandleHolder.glb" id="1_w6o8f"]
+
+[node name="CandleHolder" unique_id=1542366992 instance=ExtResource("1_w6o8f")]

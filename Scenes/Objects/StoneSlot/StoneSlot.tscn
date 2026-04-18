@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://dfri161e10ixa"]
+
+[ext_resource type="PackedScene" uid="uid://cj2tgs3tuxa68" path="res://Assets/Models/CardSlotModel.glb" id="1_6jnn7"]
+[ext_resource type="Material" uid="uid://d3ckf65yudiyv" path="res://Assets/Materials/Stone/Stone.tres" id="2_pqvcb"]
+
+[node name="StoneSlot" unique_id=53803721 instance=ExtResource("1_6jnn7")]
+
+[node name="Cube" parent="." index="0" unique_id=645055698]
+surface_material_override/0 = ExtResource("2_pqvcb")
