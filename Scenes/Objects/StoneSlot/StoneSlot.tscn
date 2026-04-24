@@ -1,9 +1,38 @@
-[gd_scene format=3 uid="uid://dfri161e10ixa"]
+[gd_scene format=3 uid="uid://b6f6rybmqw617"]
 
-[ext_resource type="PackedScene" uid="uid://cj2tgs3tuxa68" path="res://Assets/Models/CardSlotModel.glb" id="1_6jnn7"]
-[ext_resource type="Material" uid="uid://d3ckf65yudiyv" path="res://Assets/Materials/Stone/Stone.tres" id="2_pqvcb"]
+[ext_resource type="PackedScene" uid="uid://dfri161e10ixa" path="res://Scenes/Objects/StoneSlot/StoneSlotModel.tscn" id="1_4jm5x"]
+[ext_resource type="Script" uid="uid://dgk7h3vn2i1r3" path="res://Scenes/Slots/AbstractSlot.gd" id="2_4ahsq"]
+[ext_resource type="Script" uid="uid://dvx3y3ayopf6b" path="res://Scenes/Slots/SlotComponent.gd" id="3_ug2ju"]
+[ext_resource type="Script" uid="uid://dv6lhcky7u8re" path="res://Scenes/GeneralComponents/HighlightComponent.gd" id="4_4ahsq"]
+[ext_resource type="Shader" uid="uid://bhdst7tesecek" path="res://Assets/Shaders/Outline.gdshader" id="5_s6k7a"]
 
-[node name="StoneSlot" unique_id=53803721 instance=ExtResource("1_6jnn7")]
+[sub_resource type="BoxShape3D" id="BoxShape3D_6jnn7"]
+size = Vector3(1, 3.9700806, 1)
 
-[node name="Cube" parent="." index="0" unique_id=645055698]
-surface_material_override/0 = ExtResource("2_pqvcb")
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_mco6v"]
+render_priority = 0
+shader = ExtResource("5_s6k7a")
+shader_parameter/color = Color(1, 1, 1, 1)
+shader_parameter/size = 1.05
+
+[node name="StoneSlot" type="Area3D" unique_id=1536474922 node_paths=PackedStringArray("slot_position")]
+script = ExtResource("2_4ahsq")
+slot_position = NodePath("Marker3D")
+
+[node name="StoneSlotModel" parent="." unique_id=53803721 instance=ExtResource("1_4jm5x")]
+transform = Transform3D(0.18, 0, 0, 0, 0.18, 0, 0, 0, 0.18, 0, 0, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=82373336]
+shape = SubResource("BoxShape3D_6jnn7")
+
+[node name="SlotComponent" type="Node" parent="." unique_id=436282626]
+script = ExtResource("3_ug2ju")
+valid_tags = Array[int]([6])
+metadata/_custom_type_script = "uid://dvx3y3ayopf6b"
+
+[node name="HighlightComponent" type="Node" parent="." unique_id=493032725]
+script = ExtResource("4_4ahsq")
+highlight_material = SubResource("ShaderMaterial_mco6v")
+metadata/_custom_type_script = "uid://dv6lhcky7u8re"
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=1085074453]

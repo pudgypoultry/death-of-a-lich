@@ -3,13 +3,21 @@
 [ext_resource type="PackedScene" uid="uid://tem3bauml736" path="res://Scenes/Cards/Card.tscn" id="1_y8ncq"]
 [ext_resource type="PackedScene" uid="uid://n62vwqdhw08p" path="res://Scenes/Player/PlayerCamera.tscn" id="2_gaqdb"]
 [ext_resource type="PackedScene" uid="uid://d2lfw4kld3081" path="res://Scenes/Boxes/Box.tscn" id="4_ti018"]
+[ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="5_fucb2"]
 [ext_resource type="PackedScene" uid="uid://0qdp2mo07vuk" path="res://Scenes/Objects/Candle/FullCandle.tscn" id="5_ti018"]
-[ext_resource type="PackedScene" uid="uid://co7pnmmh15ihr" path="res://Scenes/Cards/DeathCards/Death/Death.tscn" id="5_u6t3p"]
-[ext_resource type="PackedScene" uid="uid://dfri161e10ixa" path="res://Scenes/Objects/StoneSlot/StoneSlot.tscn" id="7_fucb2"]
+[ext_resource type="PackedScene" uid="uid://b6f6rybmqw617" path="res://Scenes/Objects/StoneSlot/StoneSlot.tscn" id="7_fucb2"]
 [ext_resource type="PackedScene" uid="uid://dvk2ndec1swtf" path="res://Scenes/Objects/Tables/Table.tscn" id="7_ukipb"]
 
 [sub_resource type="Environment" id="Environment_ti018"]
 background_mode = 1
+
+[sub_resource type="Resource" id="Resource_ukipb"]
+script = ExtResource("5_fucb2")
+card_name = "Test card"
+tags = Array[int]([6])
+rank = 5
+card_type = 2
+metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
 
 [node name="Sandbox" type="Node3D" unique_id=2145388295]
 
@@ -20,26 +28,26 @@ transform = Transform3D(1, 0, 0, 0, 0.34229895, 0.9395911, 0, -0.9395911, 0.3422
 transform = Transform3D(0.26676744, -0.76520663, 0.5859128, 0, 0.6079442, 0.79397976, -0.9637609, -0.21180795, 0.16217972, -15.733683, 4.7019453, 0)
 
 [node name="Box" parent="." unique_id=341623789 instance=ExtResource("4_ti018")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.007114, 0.2898445, 1.4564848)
-
-[node name="FullCandle" parent="." unique_id=2071894701 instance=ExtResource("5_ti018")]
-transform = Transform3D(0.2, 0, 0, 0, 0.2, 0, 0, 0, 0.2, 5.533145, 0, -3.3415608)
-
-[node name="OmniLight3D" type="OmniLight3D" parent="FullCandle" unique_id=1819517672]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.573228, 0)
-light_energy = 4.365
-omni_range = 6.676762
-
-[node name="Card" parent="." unique_id=1113380369 instance=ExtResource("1_y8ncq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.079015285, 0.11000002, 0.5806041)
-
-[node name="Death" parent="." unique_id=875766681 instance=ExtResource("5_u6t3p")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.3131351, 0.29789495, 0.6312721)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.007114, 0.040943623, 1.4564848)
 
 [node name="Table" parent="." unique_id=1240822494 instance=ExtResource("7_ukipb")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+collision_layer = 32771
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1086678071]
 environment = SubResource("Environment_ti018")
 
-[node name="StoneSlot" parent="." unique_id=53803721 instance=ExtResource("7_fucb2")]
-transform = Transform3D(-7.649493e-09, 0, -0.11698761, 0, 0.13222389, 0, 0.175, 0, -5.113691e-09, -0.036312103, 0.24085605, 2)
+[node name="Card" parent="." unique_id=1113380369 instance=ExtResource("1_y8ncq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112252474, 0)
+slottable_data = SubResource("Resource_ukipb")
+
+[node name="FullCandle" parent="." unique_id=2071894701 instance=ExtResource("5_ti018")]
+transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.5646, -0.24890041, -3.256413)
+
+[node name="OmniLight3D" type="OmniLight3D" parent="FullCandle" unique_id=2123445111]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 12.573228, 0)
+light_energy = 4.365
+omni_range = 6.676762
+
+[node name="StoneSlot" parent="." unique_id=1536474922 instance=ExtResource("7_fucb2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 2.5831087)

@@ -3,9 +3,9 @@
 [ext_resource type="Script" uid="uid://d18yjicny3adv" path="res://Scenes/Cards/AbstractCard.gd" id="1_lkr4o"]
 [ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="2_57y1x"]
 [ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="3_4hs4o"]
-[ext_resource type="Texture2D" uid="uid://diio0ef48vt30" path="res://CardArt/Death/1 Death.png" id="3_57y1x"]
-[ext_resource type="Script" uid="uid://d3bxcsocp82vp" path="res://Scenes/GeneralComponents/DragAndDropComponent.gd" id="4_l4gw5"]
+[ext_resource type="Texture2D" uid="uid://b8oi4ph2aknqf" path="res://CardArt/Minions/Gerblin.png" id="3_ko57s"]
 [ext_resource type="Script" uid="uid://dyvcxxb5jcjdp" path="res://Scenes/Slots/SlottableComponent.gd" id="5_if033"]
+[ext_resource type="PackedScene" uid="uid://bypokxr5q388m" path="res://Scenes/GeneralComponents/DragAndDrop/DragAndDropComponent.tscn" id="5_ko57s"]
 
 [sub_resource type="Resource" id="Resource_wi8ie"]
 script = ExtResource("2_57y1x")
@@ -16,12 +16,12 @@ rank = 5
 card_type = 2
 metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_57y1x"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1auxw"]
 transparency = 1
-albedo_texture = ExtResource("3_57y1x")
+albedo_texture = ExtResource("3_ko57s")
 
-[sub_resource type="QuadMesh" id="QuadMesh_4hs4o"]
-material = SubResource("StandardMaterial3D_57y1x")
+[sub_resource type="QuadMesh" id="QuadMesh_eflxi"]
+material = SubResource("StandardMaterial3D_1auxw")
 size = Vector2(1.01, 1.618)
 orientation = 1
 
@@ -46,7 +46,7 @@ card_faces = NodePath("CardFaces")
 
 [node name="FrontFace" type="MeshInstance3D" parent="CardFaces" unique_id=1159915613]
 transform = Transform3D(0.605, 0, -1.0578156e-07, 0, 0.605, 0, 1.0578156e-07, 0, 0.605, 0, 0.005, 0)
-mesh = SubResource("QuadMesh_4hs4o")
+mesh = SubResource("QuadMesh_eflxi")
 
 [node name="BackFace" type="MeshInstance3D" parent="CardFaces" unique_id=837847631]
 transform = Transform3D(-0.605, 5.289078e-08, 0, -5.289078e-08, -0.605, 0, 0, 0, 0.605, 0, -0.005, 0)
@@ -55,14 +55,9 @@ mesh = SubResource("QuadMesh_if033")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273998511]
 shape = SubResource("BoxShape3D_3ujke")
 
-[node name="CheckRay" type="RayCast3D" parent="." unique_id=920081280]
-target_position = Vector3(0, -50, 0)
+[node name="DragAndDropComponent" parent="." unique_id=532904837 instance=ExtResource("5_ko57s")]
 
-[node name="DragAndDropNode" type="Node" parent="." unique_id=429295298 node_paths=PackedStringArray("check_ray")]
-script = ExtResource("4_l4gw5")
-check_ray = NodePath("../CheckRay")
-pickup_height = 1.0
-
-[node name="SlottableNode" type="Node" parent="." unique_id=329753460]
+[node name="SlottableNode" type="Node" parent="." unique_id=329753460 node_paths=PackedStringArray("drag_and_drop_node")]
 script = ExtResource("5_if033")
+drag_and_drop_node = NodePath("../DragAndDropComponent")
 debug = true

@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://bg3ugyn5druax"]
+
+[ext_resource type="Script" uid="uid://dyxp5nhy8y3kn" path="res://Scenes/Deck/Deck.gd" id="1_i0qsc"]
+
+[node name="Deck" type="Node3D" unique_id=1142460259]
+script = ExtResource("1_i0qsc")
+
+[node name="Marker3D" type="Marker3D" parent="." unique_id=2000711384]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)

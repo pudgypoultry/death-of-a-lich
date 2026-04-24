@@ -64,6 +64,13 @@ move_right={
 ]
 }
 
+[layer_names]
+
+3d_physics/layer_1="Physical Interaction"
+3d_physics/layer_2="Pickup Layer"
+3d_physics/layer_15="Slot Interaction"
+3d_physics/layer_16="Drop Check In Environment"
+
 [physics]
 
 3d/physics_engine="Jolt Physics"

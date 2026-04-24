@@ -23,6 +23,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		var result := get_world_3d().direct_space_state.intersect_ray(query)
 		if "position" in result.keys():
 			BoardManager.mouse_world_position = result["position"]
+		if "collider" in result.keys():
+			BoardManager.current_focus = result["collider"]
 
 
 func _process(delta):

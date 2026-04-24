@@ -3,27 +3,19 @@ class_name AbstractCard
 
 @onready var drag_and_drop_component : DragAndDropComponent = $DragAndDropNode
 @onready var slottable_component : SlottableComponent = $SlottableNode
+@onready var card_faces : Node3D = $CardFaces
+@onready var original_basis = card_faces.basis
+@onready var target_basis = original_basis.rotated(Vector3.LEFT, deg_to_rad(-90))
 
 @export var slottable_data : SlottableData
-@export var card_faces : Node3D
 
 var flipped : bool = false
 
-# TODO: make front and back faces under same parent, flip that instead
-# TODO: create setup function and assign correct mesh to front face and correct script to root node
-
-#func _ready():
-	#await get_tree().create_timer(1.5).timeout
-	#flip_card()
-	#await get_tree().create_timer(1.5).timeout
-	#flip_card()
 
 
-#func setup():
-	#front_face.material
+func rotate_card(time : float, original : Basis, target : Basis):
+	card_faces.create_tween().tween_method(interpolate_basis.bind(original, target), 0.0, 1.0, time).set_trans(Tween.TRANS_EXPO)
 
 
-func flip_card():
-	flipped = !flipped
-	card_faces.rotate_z(deg_to_rad(60))
-	
+func interpolate_basis(weight : float, original : Basis, target : Basis):
+	card_faces.basis = original.slerp(target, weight)

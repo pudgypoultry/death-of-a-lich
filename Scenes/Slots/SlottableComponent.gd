@@ -14,7 +14,10 @@ var current_slot : Node3D
 func _ready() -> void:
 	actor_reference = get_parent()
 	actor_reference.add_to_group("IsSlottable")
-	drag_and_drop_node = actor_reference.find_child("DragAndDropNode")
+	if !drag_and_drop_node:
+		for child in actor_reference.get_children():
+			if child is DragAndDropComponent:
+				drag_and_drop_node = child
 	if !drag_and_drop_node:
 		print("hey big problem bucko")
 	drag_and_drop_node.connect("dropping", on_node_dropped)
