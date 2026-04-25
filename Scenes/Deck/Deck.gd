@@ -1,4 +1,5 @@
 extends Node3D
+class_name Deck
 
 @export var cards : Array[PackedScene] = []
 @export var draw_position : Node3D
@@ -8,7 +9,7 @@ extends Node3D
 signal card_drawn(card)
 signal peeked(card)
 signal shuffled
-signal card_added(card)
+signal card_added_to_deck(card)
 signal deck_emptied()
 
 
@@ -42,32 +43,32 @@ func draw() -> AbstractCard:
 	var new_card = cards.pop_front()
 	var card_scene : AbstractCard = InstantiateCard(new_card)
 	get_tree().root.add_child(card_scene)
-	card_drawn.emit(new_card)
+	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
 	return card_scene
 
 
-func draw_from_bottom() -> PackedScene:
+func draw_from_bottom() -> AbstractCard:
 	var new_card = cards.pop_back()
 	var card_scene : AbstractCard = InstantiateCard(new_card)
 	get_tree().root.add_child(card_scene)
-	card_drawn.emit(new_card)
+	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
 	return new_card
 
 
-func draw_from_position(pos : int) -> PackedScene:
+func draw_from_position(pos : int) -> AbstractCard:
 	var new_card = cards.pop_at(pos)
 	var card_scene : AbstractCard = InstantiateCard(new_card)
 	get_tree().root.add_child(card_scene)
-	card_drawn.emit(new_card)
+	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
 	return new_card
 
 
 ## The next three add a card PackedScene to the deck's array
 func add_card_at_position(pos : int, card_to_add : AbstractCard):
-	card_added.emit(card_to_add)
+	card_added_to_deck.emit(card_to_add)
 	cards.insert(pos, pack_card(card_to_add))
 
 
@@ -76,8 +77,7 @@ func add_card_to_top(card_to_add : AbstractCard):
 
 
 func add_card_to_bottom(card_to_add : AbstractCard):
-	card_added.emit(card_to_add)
-	cards.append(card_to_add)
+	add_card_at_position(-1, card_to_add)
 
 
 ## The next three peek at a card PackedScene from the deck's array

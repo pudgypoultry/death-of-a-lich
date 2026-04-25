@@ -15,9 +15,8 @@ func _ready() -> void:
 	actor_reference = get_parent()
 	actor_reference.add_to_group("IsSlottable")
 	if !drag_and_drop_node:
-		for child in actor_reference.get_children():
-			if child is DragAndDropComponent:
-				drag_and_drop_node = child
+		if actor_reference.has_node("DragAndDropComponent"):
+			drag_and_drop_node = actor_reference.get_node("DragAndDropComponent")
 	if !drag_and_drop_node:
 		print("hey big problem bucko")
 	drag_and_drop_node.connect("dropping", on_node_dropped)
