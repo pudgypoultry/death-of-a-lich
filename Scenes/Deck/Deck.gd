@@ -54,7 +54,7 @@ func draw_from_bottom() -> AbstractCard:
 	get_tree().root.add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
-	return new_card
+	return card_scene
 
 
 func draw_from_position(pos : int) -> AbstractCard:
@@ -63,7 +63,7 @@ func draw_from_position(pos : int) -> AbstractCard:
 	get_tree().root.add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
-	return new_card
+	return card_scene
 
 
 ## The next three add a card PackedScene to the deck's array
