@@ -2,7 +2,7 @@ extends Node
 
 # Globally accessible enums go here
 
-enum PlayerTurnState {BEGINNING, UPKEEP, ACTION, END, OVER}
+enum PlayerTurnState {UPKEEP, DRAW, ACTION, END, OVER}
 enum CardType {MONSTER, ACTION, OBJECT, CHARACTER, LOCATION, DEATH}
 enum MonsterType {UNDEAD, MINION, ELEMENTAL, CELESTIAL, INFERNAL, HERO}
 enum Element {EARTH, AIR, FIRE, WATER, DARK, LIGHT, NULL}
