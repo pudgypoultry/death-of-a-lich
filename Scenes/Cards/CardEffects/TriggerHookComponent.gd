@@ -6,6 +6,7 @@ class_name TriggerHookComponent
 @export var effect_queue : Array[CardEffectComponent] = []
 
 signal effect_completed(effect : CardEffectComponent)
+signal all_effects_completed
 
 
 func execute():
@@ -14,3 +15,4 @@ func execute():
 		await effect.completed
 		print_debug(actor_reference.name + " executed effect:	" + effect.name)
 		effect_completed.emit(effect)
+	all_effects_completed.emit()
