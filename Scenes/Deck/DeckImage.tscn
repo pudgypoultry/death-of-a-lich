@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://g6lp7nuq3teo"]
+
+[ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="1_28gam"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1fst"]
+albedo_texture = ExtResource("1_28gam")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6hc0v"]
+material = SubResource("StandardMaterial3D_u1fst")
+size = Vector2(1.01, 1.618)
+orientation = 1
+
+[node name="CardBack" type="MeshInstance3D" unique_id=352213216]
+mesh = SubResource("QuadMesh_6hc0v")
