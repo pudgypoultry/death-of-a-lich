@@ -1,0 +1,11 @@
+[gd_scene format=3 uid="uid://b10g6i6n74kh"]
+
+[ext_resource type="Script" uid="uid://cg805fjqirhkd" path="res://UIManager.gd" id="1_fhfuw"]
+[ext_resource type="PackedScene" uid="uid://drecc5boyingn" path="res://Scenes/UI/CardSelectionScreen.tscn" id="2_jv8xy"]
+[ext_resource type="PackedScene" uid="uid://co7pnmmh15ihr" path="res://Scenes/Cards/DeathCards/Death/Death.tscn" id="3_sr2kn"]
+[ext_resource type="PackedScene" uid="uid://5dut67hppo1m" path="res://Scenes/Cards/Characters/Summons/Goblin/Goblin.tscn" id="4_a4yig"]
+
+[node name="CanvasLayer" type="CanvasLayer" unique_id=1806242243]
+script = ExtResource("1_fhfuw")
+card_selection_screen_scene = ExtResource("2_jv8xy")
+test_cards = Array[PackedScene]([ExtResource("3_sr2kn"), ExtResource("3_sr2kn"), ExtResource("4_a4yig")])

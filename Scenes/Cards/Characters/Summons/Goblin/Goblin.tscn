@@ -2,32 +2,32 @@
 
 [ext_resource type="Script" uid="uid://d18yjicny3adv" path="res://Scenes/Cards/AbstractCard.gd" id="1_lt1xh"]
 [ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="2_7l4l4"]
+[ext_resource type="Texture2D" uid="uid://b8oi4ph2aknqf" path="res://CardArt/Minions/Gerblin.png" id="2_hrmpe"]
 [ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="3_j6blw"]
 [ext_resource type="PackedScene" uid="uid://bypokxr5q388m" path="res://Scenes/GeneralComponents/DragAndDrop/DragAndDropComponent.tscn" id="4_dage1"]
 [ext_resource type="Script" uid="uid://dyvcxxb5jcjdp" path="res://Scenes/Slots/SlottableComponent.gd" id="5_j5kmv"]
 
-[sub_resource type="Resource" id="Resource_wi8ie"]
-script = ExtResource("2_7l4l4")
-card_name = "Test card"
-tags = Array[int]([3, 7])
-rank = 5
-card_type = 2
-metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ujke"]
 size = Vector3(0.625, 0.05, 0.875)
 
-[node name="Card" type="StaticBody3D" unique_id=1113380369 node_paths=PackedStringArray("card_faces")]
+[sub_resource type="Resource" id="Resource_dage1"]
+script = ExtResource("2_7l4l4")
+card_name = "Goblin"
+description = "A Goblin"
+front_face_location = "res://CardArt/Minions/Gerblin.png"
+flavor_text = "Definitely a Goblin"
+metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
+
+[node name="GoblinCard" type="StaticBody3D" unique_id=1113380369]
 script = ExtResource("1_lt1xh")
-slottable_data = SubResource("Resource_wi8ie")
-card_faces = NodePath("CardFaces")
+front_texture_location = "res://CardArt/Minions/Gerblin.png"
 
 [node name="CardFaces" type="Node3D" parent="." unique_id=848404760]
 
 [node name="Front" type="Sprite3D" parent="CardFaces" unique_id=13997403]
 transform = Transform3D(0.06282218, 0, 0, 0, 1, 0, 0, 0, 0.06282218, 0, 0.005, 0)
 axis = 1
-texture = ExtResource("3_j6blw")
+texture = ExtResource("2_hrmpe")
 
 [node name="Back" type="Sprite3D" parent="CardFaces" unique_id=400759521]
 transform = Transform3D(0.06282218, 0, 0, 0, 1, 0, 0, 0, 0.06282218, 0, -0.005, 0)
@@ -41,4 +41,5 @@ shape = SubResource("BoxShape3D_3ujke")
 
 [node name="SlottableNode" type="Node" parent="." unique_id=329753460 node_paths=PackedStringArray("drag_and_drop_node")]
 script = ExtResource("5_j5kmv")
+slottable_data = SubResource("Resource_dage1")
 drag_and_drop_node = NodePath("../DragAndDropComponent")

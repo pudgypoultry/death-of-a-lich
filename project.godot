@@ -35,6 +35,10 @@ HasSlot=""
 IsSlottable=""
 IsSetDressing=""
 IsDraggable=""
+HasUpkeepTrigger="Trigger Hook for Upkeep Step"
+HasEndOfTurnTrigger="Trigger Hook for End of Turn"
+HasEndOfActionTrigger="Trigger Hook for End of Action Step"
+HasOnDrawTrigger="Trigger Hook for On Draw"
 
 [input]
 

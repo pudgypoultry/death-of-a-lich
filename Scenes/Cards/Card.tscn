@@ -3,16 +3,27 @@
 [ext_resource type="Script" uid="uid://d18yjicny3adv" path="res://Scenes/Cards/AbstractCard.gd" id="1_21rx5"]
 [ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="2_3ujke"]
 [ext_resource type="Script" uid="uid://dyvcxxb5jcjdp" path="res://Scenes/Slots/SlottableComponent.gd" id="2_hael8"]
+[ext_resource type="Texture2D" uid="uid://diio0ef48vt30" path="res://CardArt/Death/1 Death.png" id="3_3yyhe"]
 [ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="3_7mr5f"]
 [ext_resource type="PackedScene" uid="uid://bypokxr5q388m" path="res://Scenes/GeneralComponents/DragAndDrop/DragAndDropComponent.tscn" id="5_7mr5f"]
 
-[sub_resource type="Resource" id="Resource_wi8ie"]
-script = ExtResource("2_3ujke")
-card_name = "Test card"
-tags = Array[int]([3, 7])
-rank = 5
-card_type = 2
-metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1auxw"]
+transparency = 1
+albedo_texture = ExtResource("3_3yyhe")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yh81d"]
+material = SubResource("StandardMaterial3D_1auxw")
+size = Vector2(1.01, 1.618)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4gw5"]
+transparency = 1
+albedo_texture = ExtResource("3_7mr5f")
+
+[sub_resource type="QuadMesh" id="QuadMesh_t4r8q"]
+material = SubResource("StandardMaterial3D_l4gw5")
+size = Vector2(1.01, 1.618)
+orientation = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ujke"]
 size = Vector3(0.625, 0.05, 0.875)
@@ -20,6 +31,8 @@ size = Vector3(0.625, 0.05, 0.875)
 [sub_resource type="Resource" id="Resource_7mr5f"]
 script = ExtResource("2_3ujke")
 card_name = "Example"
+description = "Example"
+front_face_location = "res://CardArt/Card Back.png"
 tags = Array[int]([6])
 metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
 
@@ -27,19 +40,17 @@ metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
 collision_layer = 16385
 collision_mask = 16385
 script = ExtResource("1_21rx5")
-slottable_data = SubResource("Resource_wi8ie")
+front_texture_location = "res://CardArt/Card Back.png"
 
 [node name="CardFaces" type="Node3D" parent="." unique_id=848404760]
 
-[node name="Front" type="Sprite3D" parent="CardFaces" unique_id=13997403]
-transform = Transform3D(0.06282218, 0, 0, 0, 1, 0, 0, 0, 0.06282218, 0, 0.005, 0)
-axis = 1
-texture = ExtResource("3_7mr5f")
+[node name="FrontFace" type="MeshInstance3D" parent="CardFaces" unique_id=706768193]
+transform = Transform3D(0.605, 0, -1.0578156e-07, 0, 0.605, 0, 1.0578156e-07, 0, 0.605, 0, 0.005, 0)
+mesh = SubResource("QuadMesh_yh81d")
 
-[node name="Back" type="Sprite3D" parent="CardFaces" unique_id=400759521]
-transform = Transform3D(0.06282218, 0, 0, 0, 1, 0, 0, 0, 0.06282218, 0, -0.005, 0)
-axis = 1
-texture = ExtResource("3_7mr5f")
+[node name="BackFace" type="MeshInstance3D" parent="CardFaces" unique_id=646156895]
+transform = Transform3D(-0.605, 5.289078e-08, 0, -5.289078e-08, -0.605, 0, 0, 0, 0.605, 0, -0.005, 0)
+mesh = SubResource("QuadMesh_t4r8q")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273998511]
 shape = SubResource("BoxShape3D_3ujke")

@@ -6,8 +6,9 @@ class_name AbstractCard
 @onready var card_faces : Node3D = $CardFaces
 @onready var original_basis = card_faces.basis
 @onready var target_basis = original_basis.rotated(Vector3.LEFT, deg_to_rad(-90))
+@onready var slottable_data : SlottableData = slottable_component.slottable_data
 
-@export var slottable_data : SlottableData
+@export var front_texture_location : String
 
 var flipped : bool = false
 

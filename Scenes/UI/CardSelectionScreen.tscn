@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://drecc5boyingn"]
+
+[ext_resource type="Script" uid="uid://dabk2kvbtf8ei" path="res://Scenes/UI/CardSelectionScreen.gd" id="1_ck1ex"]
+[ext_resource type="PackedScene" uid="uid://dgf77s54xcq4e" path="res://Scenes/UI/CardSelectionButton.tscn" id="2_u2me3"]
+
+[node name="CardSelectionScreen" type="Control" unique_id=1465091749 node_paths=PackedStringArray("card_container")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_ck1ex")
+card_container = NodePath("CardSelectionBox")
+card_selection_button = ExtResource("2_u2me3")
+
+[node name="CardSelectionBox" type="HBoxContainer" parent="." unique_id=2060054265]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

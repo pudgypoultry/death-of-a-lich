@@ -1,10 +1,78 @@
 [gd_scene format=3 uid="uid://bg3ugyn5druax"]
 
 [ext_resource type="Script" uid="uid://dyxp5nhy8y3kn" path="res://Scenes/Deck/Deck.gd" id="1_i0qsc"]
+[ext_resource type="Script" uid="uid://upy3xpo40mva" path="res://Scenes/Deck/DeckAnimator.gd" id="2_6hc0v"]
+[ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="2_u1fst"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_u1fst"]
+albedo_texture = ExtResource("2_u1fst")
+
+[sub_resource type="QuadMesh" id="QuadMesh_6hc0v"]
+material = SubResource("StandardMaterial3D_u1fst")
+size = Vector2(1.01, 1.618)
+orientation = 1
 
 [node name="Deck" type="Node3D" unique_id=1142460259 node_paths=PackedStringArray("draw_position")]
 script = ExtResource("1_i0qsc")
 draw_position = NodePath("Marker3D")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=2000711384]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.0607841, 0)
+
+[node name="MeshFolder" type="Node3D" parent="." unique_id=2006741810]
+script = ExtResource("2_6hc0v")
+
+[node name="CardBack" type="MeshInstance3D" parent="MeshFolder" unique_id=1918611158]
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack2" type="MeshInstance3D" parent="MeshFolder" unique_id=2039744665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.1, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack3" type="MeshInstance3D" parent="MeshFolder" unique_id=49465390]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.2, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack4" type="MeshInstance3D" parent="MeshFolder" unique_id=1716567570]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.3, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack5" type="MeshInstance3D" parent="MeshFolder" unique_id=534175986]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack6" type="MeshInstance3D" parent="MeshFolder" unique_id=18009306]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack7" type="MeshInstance3D" parent="MeshFolder" unique_id=1393343547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack8" type="MeshInstance3D" parent="MeshFolder" unique_id=1387883040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.050480366, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack9" type="MeshInstance3D" parent="MeshFolder" unique_id=427789761]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.15048036, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack10" type="MeshInstance3D" parent="MeshFolder" unique_id=93468830]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25048035, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack11" type="MeshInstance3D" parent="MeshFolder" unique_id=1881877525]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.35048038, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack12" type="MeshInstance3D" parent="MeshFolder" unique_id=57444055]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.45048037, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack13" type="MeshInstance3D" parent="MeshFolder" unique_id=17515728]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.55048037, 0)
+mesh = SubResource("QuadMesh_6hc0v")
+
+[node name="CardBack14" type="MeshInstance3D" parent="MeshFolder" unique_id=1240061152]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6504804, 0)
+mesh = SubResource("QuadMesh_6hc0v")

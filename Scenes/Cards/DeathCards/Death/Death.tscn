@@ -3,44 +3,41 @@
 [ext_resource type="Script" uid="uid://d18yjicny3adv" path="res://Scenes/Cards/AbstractCard.gd" id="1_lkr4o"]
 [ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="2_57y1x"]
 [ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="3_4hs4o"]
-[ext_resource type="Texture2D" uid="uid://b8oi4ph2aknqf" path="res://CardArt/Minions/Gerblin.png" id="3_ko57s"]
+[ext_resource type="Texture2D" uid="uid://diio0ef48vt30" path="res://CardArt/Death/1 Death.png" id="3_ko57s"]
 [ext_resource type="Script" uid="uid://dyvcxxb5jcjdp" path="res://Scenes/Slots/SlottableComponent.gd" id="5_if033"]
 [ext_resource type="PackedScene" uid="uid://bypokxr5q388m" path="res://Scenes/GeneralComponents/DragAndDrop/DragAndDropComponent.tscn" id="5_ko57s"]
 
-[sub_resource type="Resource" id="Resource_wi8ie"]
-script = ExtResource("2_57y1x")
-card_name = "Death"
-description = "Poo  poo pee pee"
-tags = Array[int]([3, 7])
-rank = 5
-card_type = 2
-metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1auxw"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ko57s"]
 transparency = 1
 albedo_texture = ExtResource("3_ko57s")
 
 [sub_resource type="QuadMesh" id="QuadMesh_eflxi"]
-material = SubResource("StandardMaterial3D_1auxw")
+material = SubResource("StandardMaterial3D_ko57s")
 size = Vector2(1.01, 1.618)
 orientation = 1
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4gw5"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1auxw"]
 transparency = 1
 albedo_texture = ExtResource("3_4hs4o")
 
 [sub_resource type="QuadMesh" id="QuadMesh_if033"]
-material = SubResource("StandardMaterial3D_l4gw5")
+material = SubResource("StandardMaterial3D_1auxw")
 size = Vector2(1.01, 1.618)
 orientation = 1
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_3ujke"]
 size = Vector3(0.625, 0.05, 0.875)
 
-[node name="DeathCard" type="StaticBody3D" unique_id=1113380369 node_paths=PackedStringArray("card_faces")]
+[sub_resource type="Resource" id="Resource_eflxi"]
+script = ExtResource("2_57y1x")
+card_name = "Death"
+description = "Death is inevitable"
+front_face_location = "res://CardArt/Death/1 Death.png"
+metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
+
+[node name="DeathCard" type="StaticBody3D" unique_id=1113380369]
 script = ExtResource("1_lkr4o")
-slottable_data = SubResource("Resource_wi8ie")
-card_faces = NodePath("CardFaces")
+front_texture_location = "res://CardArt/Death/1 Death.png"
 
 [node name="CardFaces" type="Node3D" parent="." unique_id=848404760]
 
@@ -59,5 +56,6 @@ shape = SubResource("BoxShape3D_3ujke")
 
 [node name="SlottableNode" type="Node" parent="." unique_id=329753460 node_paths=PackedStringArray("drag_and_drop_node")]
 script = ExtResource("5_if033")
+slottable_data = SubResource("Resource_eflxi")
 drag_and_drop_node = NodePath("../DragAndDropComponent")
 debug = true

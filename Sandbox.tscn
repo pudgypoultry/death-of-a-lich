@@ -1,23 +1,14 @@
 [gd_scene format=3 uid="uid://bfu2jrtls3lul"]
 
-[ext_resource type="PackedScene" uid="uid://tem3bauml736" path="res://Scenes/Cards/Card.tscn" id="1_y8ncq"]
 [ext_resource type="PackedScene" uid="uid://n62vwqdhw08p" path="res://Scenes/Player/PlayerCamera.tscn" id="2_gaqdb"]
 [ext_resource type="PackedScene" uid="uid://d2lfw4kld3081" path="res://Scenes/Boxes/Box.tscn" id="4_ti018"]
-[ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="5_fucb2"]
 [ext_resource type="PackedScene" uid="uid://0qdp2mo07vuk" path="res://Scenes/Objects/Candle/FullCandle.tscn" id="5_ti018"]
+[ext_resource type="PackedScene" uid="uid://bg3ugyn5druax" path="res://Scenes/Deck/Deck.tscn" id="6_u6t3p"]
 [ext_resource type="PackedScene" uid="uid://b6f6rybmqw617" path="res://Scenes/Objects/StoneSlot/StoneSlot.tscn" id="7_fucb2"]
 [ext_resource type="PackedScene" uid="uid://dvk2ndec1swtf" path="res://Scenes/Objects/Tables/Table.tscn" id="7_ukipb"]
 
 [sub_resource type="Environment" id="Environment_ti018"]
 background_mode = 1
-
-[sub_resource type="Resource" id="Resource_ukipb"]
-script = ExtResource("5_fucb2")
-card_name = "Test card"
-tags = Array[int]([6])
-rank = 5
-card_type = 2
-metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
 
 [node name="Sandbox" type="Node3D" unique_id=2145388295]
 
@@ -37,10 +28,6 @@ collision_layer = 32771
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1086678071]
 environment = SubResource("Environment_ti018")
 
-[node name="Card" parent="." unique_id=1113380369 instance=ExtResource("1_y8ncq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.112252474, 0)
-slottable_data = SubResource("Resource_ukipb")
-
 [node name="FullCandle" parent="." unique_id=2071894701 instance=ExtResource("5_ti018")]
 transform = Transform3D(0.25, 0, 0, 0, 0.25, 0, 0, 0, 0.25, 5.5646, -0.24890041, -3.256413)
 
@@ -51,3 +38,6 @@ omni_range = 6.676762
 
 [node name="StoneSlot" parent="." unique_id=1536474922 instance=ExtResource("7_fucb2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 2.5831087)
+
+[node name="Deck" parent="." unique_id=1142460259 instance=ExtResource("6_u6t3p")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9917321, -0.39499998, 0.20792866)
