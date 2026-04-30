@@ -3,7 +3,7 @@ class_name Deck
 
 @export var cards : Array[PackedScene] = []
 @export var draw_position : Node3D
-@export var deck_visual : Array[MeshInstance3D]
+@export var deck_visual : DeckVisual
 @export var shuffle_sounds : AudioStreamPlayer3D
 
 signal card_drawn(card)
@@ -29,13 +29,8 @@ func pack_card(card_to_pack : AbstractCard) -> PackedScene:
 func shuffle():
 	shuffled.emit()
 	if deck_visual:
-		shuffle_deck_animation()
+		deck_visual.shuffle_animation()
 	cards.shuffle()
-
-
-# TODO: add visuals for shuffling deck as well as small sound
-func shuffle_deck_animation():
-	print("Shuffling deck")
 
 
 ## The next three pop a card PackedScene from the deck's array

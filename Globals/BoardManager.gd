@@ -15,6 +15,7 @@ var time_since_focus_change : float = 0.0
 var cards_in_play : Array[AbstractCard] = []
 var game_active : bool = false
 var deck : Deck
+var ui_manager : UIManager
 
 
 func _ready():
@@ -29,9 +30,9 @@ func progress_turn():
 			await execute_triggers(triggers, "OnUpkeepStepComponent")
 			turn_state = GlobalEnums.PlayerTurnState.DRAW
 		GlobalEnums.PlayerTurnState.DRAW:
-			var triggers = get_tree().get_nodes_in_group("HasOnDrawTrigger")
+			var triggers = get_tree().get_nodes_in_group("HasOnDrawStepTrigger")
 			await execute_triggers(triggers, "OnDrawStepComponent")
-			var drawn_card = deck
+			await draw_card()
 			turn_state = GlobalEnums.PlayerTurnState.ACTION
 		GlobalEnums.PlayerTurnState.ACTION:
 			var triggers = get_tree().get_nodes_in_group("HasEndOfActionTrigger")
@@ -64,6 +65,8 @@ func _on_node_added(node):
 		game_active = true
 		deck.card_drawn.connect(_on_card_drawn)
 		deck.card_added_to_deck.connect(_on_card_destroyed)
+	if node is UIManager:
+		ui_manager = node
 
 
 func _on_node_removed(node):
@@ -87,3 +90,6 @@ func _on_card_drawn(drawn_card):
 		when_drawn_component.execute()
 		await when_drawn_component.effect_completed
 	
+
+func draw_card():
+	await deck.draw()

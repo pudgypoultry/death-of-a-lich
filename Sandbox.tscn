@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://0qdp2mo07vuk" path="res://Scenes/Objects/Candle/FullCandle.tscn" id="5_ti018"]
 [ext_resource type="PackedScene" uid="uid://bg3ugyn5druax" path="res://Scenes/Deck/Deck.tscn" id="6_u6t3p"]
 [ext_resource type="PackedScene" uid="uid://b6f6rybmqw617" path="res://Scenes/Objects/StoneSlot/StoneSlot.tscn" id="7_fucb2"]
+[ext_resource type="Script" uid="uid://cjta08n0s0x6i" path="res://DebugLabels.gd" id="7_ns6gl"]
 [ext_resource type="PackedScene" uid="uid://dvk2ndec1swtf" path="res://Scenes/Objects/Tables/Table.tscn" id="7_ukipb"]
 
 [sub_resource type="Environment" id="Environment_ti018"]
@@ -41,3 +42,21 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 
 [node name="Deck" parent="." unique_id=1142460259 instance=ExtResource("6_u6t3p")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.9917321, -0.39499998, 0.20792866)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=755620725 node_paths=PackedStringArray("turn_phase_label")]
+script = ExtResource("7_ns6gl")
+turn_phase_label = NodePath("VBoxContainer/TurnStepDebugLabel")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=191613406]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="TurnStepDebugLabel" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1537846564]
+layout_mode = 2
+text = "Current Phase:"
+
+[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=555054339]
+layout_mode = 2
+text = "Progress Turn"
+
+[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="CanvasLayer" method="_progress_turn"]

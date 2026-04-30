@@ -1,4 +1,5 @@
 extends Node3D
+class_name DeckVisual
 
 @onready var deck_reference : Deck = get_parent()
 
