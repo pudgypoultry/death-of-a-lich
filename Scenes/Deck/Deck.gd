@@ -13,6 +13,11 @@ signal card_added_to_deck(card)
 signal deck_emptied()
 
 
+func _ready():
+	deck_visual.update_deck_visual()
+	BoardManager.deck = self
+
+
 ## Takes a PackedScene relating to a card and instantiates then returns it
 func InstantiateCard(card_scene : PackedScene) -> AbstractCard:
 	var card : AbstractCard = card_scene.instantiate()
@@ -37,18 +42,20 @@ func shuffle():
 func draw() -> AbstractCard:
 	var new_card = cards.pop_front()
 	var card_scene : AbstractCard = InstantiateCard(new_card)
-	get_tree().root.add_child(card_scene)
+	get_parent().add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
+	deck_visual.update_deck_visual()
 	return card_scene
 
 
 func draw_from_bottom() -> AbstractCard:
 	var new_card = cards.pop_back()
 	var card_scene : AbstractCard = InstantiateCard(new_card)
-	get_tree().root.add_child(card_scene)
+	get_parent().add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
+	deck_visual.update_deck_visual()
 	return card_scene
 
 
@@ -58,6 +65,7 @@ func draw_from_position(pos : int) -> AbstractCard:
 	get_tree().root.add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
+	deck_visual.update_deck_visual()
 	return card_scene
 
 
@@ -65,6 +73,7 @@ func draw_from_position(pos : int) -> AbstractCard:
 func add_card_at_position(pos : int, card_to_add : AbstractCard):
 	card_added_to_deck.emit(card_to_add)
 	cards.insert(pos, pack_card(card_to_add))
+	deck_visual.update_deck_visual()
 
 
 func add_card_to_top(card_to_add : AbstractCard):
@@ -92,4 +101,5 @@ func peek_at_bottom() -> PackedScene:
 ## Clears the deck's card array
 func empty_deck():
 	deck_emptied.emit()
+	deck_visual.update_deck_visual()
 	cards = []

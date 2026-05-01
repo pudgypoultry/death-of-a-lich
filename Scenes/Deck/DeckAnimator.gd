@@ -10,10 +10,10 @@ var card_meshes : Array[MeshInstance3D]
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	for mesh in get_children():
-		card_meshes.append(mesh)
-	await get_tree().create_timer(1.0).timeout
-	shuffle_animation()
+	update_deck_visual()
+	#await get_tree().create_timer(1.0).timeout
+	#shuffle_animation()
+	
 
 
 func update_deck_visual():

@@ -32,6 +32,7 @@ func _ready() -> void:
 	if !pickup_height:
 		pickup_height = actor_reference.pickup_height
 	original_position = actor_reference.global_position
+	print(name, " is trying to assign as parent:	", actor_reference.get_parent())
 	original_parent = actor_reference.get_parent()
 	actor_reference.set_collision_layer_value(2, true)
 	

@@ -61,6 +61,7 @@ func execute_triggers(trigger_array : Array, trigger_node_name : String):
 ## Check for deck to hook onto
 func _on_node_added(node):
 	if node.is_in_group("IsDeck"):
+		print("HIHIHIIHIHIHIHIHII")
 		deck = node
 		game_active = true
 		deck.card_drawn.connect(_on_card_drawn)
@@ -83,13 +84,14 @@ func _on_card_destroyed(card : AbstractCard):
 
 
 func _on_card_drawn(drawn_card):
-	var on_drawn_list = get_tree().get_nodes_in_group("HasOnCardDrawnTrigger")
 	cards_in_play.append(drawn_card)
 	if drawn_card.has_node("WhenDrawnComponent"):
 		var when_drawn_component = drawn_card.find_node("WhenDrawnComponent")
 		when_drawn_component.execute()
 		await when_drawn_component.effect_completed
-	
+	var on_drawn_list = get_tree().get_nodes_in_group("HasOnCardDrawnTrigger")
+	await execute_triggers(on_drawn_list, "OnDrawStepComponent")
+
 
 func draw_card():
-	await deck.draw()
+	deck.draw()

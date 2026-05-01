@@ -1,7 +1,7 @@
 extends Node
 class_name CardEffectComponent
 
-@onready var actor_reference : AbstractCard = get_parent()
+@onready var actor_reference : AbstractCard = get_parent().actor_reference
 
 signal completed
 

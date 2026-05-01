@@ -4,9 +4,10 @@
 [ext_resource type="Script" uid="uid://upy3xpo40mva" path="res://Scenes/Deck/DeckAnimator.gd" id="2_6hc0v"]
 [ext_resource type="PackedScene" uid="uid://g6lp7nuq3teo" path="res://Scenes/Deck/DeckImage.tscn" id="3_6hc0v"]
 
-[node name="Deck" type="Node3D" unique_id=1142460259 node_paths=PackedStringArray("draw_position")]
+[node name="Deck" type="Node3D" unique_id=1142460259 node_paths=PackedStringArray("draw_position", "deck_visual") groups=["IsDeck"]]
 script = ExtResource("1_i0qsc")
 draw_position = NodePath("Marker3D")
+deck_visual = NodePath("MeshFolder")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=2000711384]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0.0607841, 0)

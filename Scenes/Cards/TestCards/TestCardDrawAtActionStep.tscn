@@ -1,0 +1,79 @@
+[gd_scene format=3 uid="uid://b0ph2b7no5t5t"]
+
+[ext_resource type="Script" uid="uid://d18yjicny3adv" path="res://Scenes/Cards/AbstractCard.gd" id="1_381mr"]
+[ext_resource type="Texture2D" uid="uid://n3cf1cw6nsar" path="res://CardArt/Events/The Mage.png" id="2_i700h"]
+[ext_resource type="Texture2D" uid="uid://dgpp0y682phnm" path="res://CardArt/Card Back.png" id="3_fft3p"]
+[ext_resource type="Script" uid="uid://dyvcxxb5jcjdp" path="res://Scenes/Slots/SlottableComponent.gd" id="4_vxgp2"]
+[ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="5_oaybr"]
+[ext_resource type="PackedScene" uid="uid://bypokxr5q388m" path="res://Scenes/GeneralComponents/DragAndDrop/DragAndDropComponent.tscn" id="6_bj64k"]
+[ext_resource type="Script" uid="uid://cyohyqe2ah1x7" path="res://Scenes/Cards/CardEffects/TriggerHooks/OnEndOfTurnComponent.gd" id="7_ug4jw"]
+[ext_resource type="Script" uid="uid://boyy0iymdkppc" path="res://Scenes/Cards/CardEffects/SimpleEffects/DrawX.gd" id="8_bp4fy"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1auxw"]
+transparency = 1
+albedo_texture = ExtResource("2_i700h")
+
+[sub_resource type="QuadMesh" id="QuadMesh_yh81d"]
+material = SubResource("StandardMaterial3D_1auxw")
+size = Vector2(1.01, 1.618)
+orientation = 1
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_l4gw5"]
+transparency = 1
+albedo_texture = ExtResource("3_fft3p")
+
+[sub_resource type="QuadMesh" id="QuadMesh_t4r8q"]
+material = SubResource("StandardMaterial3D_l4gw5")
+size = Vector2(1.01, 1.618)
+orientation = 1
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_3ujke"]
+size = Vector3(0.625, 0.05, 0.875)
+
+[sub_resource type="Resource" id="Resource_7mr5f"]
+resource_local_to_scene = true
+script = ExtResource("5_oaybr")
+card_name = "TestCard"
+description = "TestingTriggers"
+front_face_location = "res://CardArt/Events/The Mage.png"
+flavor_text = "Test"
+tags = Array[int]([3])
+card_type = 2
+metadata/_custom_type_script = "uid://bgjr6rkqf31qg"
+
+[node name="TestCardDrawEOT" type="StaticBody3D" unique_id=1113380369]
+collision_layer = 16385
+collision_mask = 16385
+script = ExtResource("1_381mr")
+front_texture_location = "res://CardArt/Events/The Mage.png"
+
+[node name="CardFaces" type="Node3D" parent="." unique_id=848404760]
+
+[node name="FrontFace" type="MeshInstance3D" parent="CardFaces" unique_id=706768193]
+transform = Transform3D(0.605, 0, -1.0578156e-07, 0, 0.605, 0, 1.0578156e-07, 0, 0.605, 0, 0.005, 0)
+mesh = SubResource("QuadMesh_yh81d")
+
+[node name="BackFace" type="MeshInstance3D" parent="CardFaces" unique_id=646156895]
+transform = Transform3D(-0.605, 5.289078e-08, 0, -5.289078e-08, -0.605, 0, 0, 0, 0.605, 0, -0.005, 0)
+mesh = SubResource("QuadMesh_t4r8q")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273998511]
+shape = SubResource("BoxShape3D_3ujke")
+
+[node name="SlottableNode" type="Node" parent="." unique_id=329753460 node_paths=PackedStringArray("drag_and_drop_node")]
+script = ExtResource("4_vxgp2")
+slottable_data = SubResource("Resource_7mr5f")
+drag_and_drop_node = NodePath("../DragAndDropNode")
+
+[node name="DragAndDropNode" parent="." unique_id=532904837 node_paths=PackedStringArray("slottable_component") instance=ExtResource("6_bj64k")]
+slottable_component = NodePath("../SlottableNode")
+
+[node name="OnEndOfTurnStep" type="Node" parent="." unique_id=1985750136 node_paths=PackedStringArray("effect_queue")]
+script = ExtResource("7_ug4jw")
+effect_queue = [NodePath("Draw1"), NodePath("Draw1_2")]
+
+[node name="Draw1" type="Node" parent="OnEndOfTurnStep" unique_id=1805326348]
+script = ExtResource("8_bp4fy")
+
+[node name="Draw1_2" type="Node" parent="OnEndOfTurnStep" unique_id=2001328188]
+script = ExtResource("8_bp4fy")

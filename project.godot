@@ -39,6 +39,7 @@ HasEndOfTurnTrigger="Trigger Hook for End of Turn"
 HasOnDrawStepTrigger="Trigger Hook for On Draw"
 HasUpkeepStepTrigger="Trigger Hook for Upkeep Step"
 HasEndOfActionStepTrigger="Trigger Hook for End of Action Step"
+IsDeck=""
 
 [input]
 
