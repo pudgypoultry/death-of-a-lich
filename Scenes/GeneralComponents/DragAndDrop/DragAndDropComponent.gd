@@ -32,7 +32,7 @@ func _ready() -> void:
 	if !pickup_height:
 		pickup_height = actor_reference.pickup_height
 	original_position = actor_reference.global_position
-	print(name, " is trying to assign as parent:	", actor_reference.get_parent())
+	# print(name, " is trying to assign as parent:	", actor_reference.get_parent())
 	original_parent = actor_reference.get_parent()
 	actor_reference.set_collision_layer_value(2, true)
 	
@@ -63,7 +63,7 @@ func _process(delta: float) -> void:
 
 
 func pick_up():
-	print(actor_reference.slottable_data)
+	# print(actor_reference.slottable_data)
 	picking_up.emit(check_ray.get_collider())
 	if is_slottable:
 		highlight_potentials()

@@ -8,5 +8,7 @@ func _process(delta):
 
 
 func _progress_turn():
-	print("Progressing Turn...")
-	BoardManager.progress_turn()
+	print("Progressing turn:")
+	print("	From:	", GlobalEnums.enum_string(BoardManager.turn_state, GlobalEnums.PlayerTurnState))
+	await BoardManager.progress_turn()
+	print("	To:  	", GlobalEnums.enum_string(BoardManager.turn_state, GlobalEnums.PlayerTurnState))

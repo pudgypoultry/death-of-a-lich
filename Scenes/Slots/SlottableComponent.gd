@@ -21,7 +21,6 @@ func _ready() -> void:
 		print("hey big problem bucko")
 	drag_and_drop_node.connect("dropping", on_node_dropped)
 	drag_and_drop_node.connect("picking_up", on_node_picked_up)
-	slottable_data = actor_reference.slottable_data
 
 
 func on_node_dropped(collider):

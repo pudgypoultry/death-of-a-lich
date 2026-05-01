@@ -8,8 +8,12 @@ class_name TriggerHookComponent
 signal effect_completed(effect : CardEffectComponent)
 signal all_effects_completed
 
+func _ready():
+	print("I AM A TRIGGER AN I HAVE:	", actor_reference)
+
 
 func execute():
+	print(actor_reference.name, "executed its triggers:	", effect_queue)
 	for effect : CardEffectComponent in effect_queue:
 		effect.execute()
 		await effect.completed

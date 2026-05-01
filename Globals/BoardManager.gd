@@ -24,33 +24,35 @@ func _ready():
 
 ## Management of Trigger Hooks and Turn Progression
 func progress_turn():
+	print("Look for triggers for phase:	", GlobalEnums.enum_string(turn_state, GlobalEnums.PlayerTurnState))
 	match turn_state:
 		GlobalEnums.PlayerTurnState.UPKEEP:
-			var triggers = get_tree().get_nodes_in_group("HasUpkeepTrigger")
-			await execute_triggers(triggers, "OnUpkeepStepComponent")
-			turn_state = GlobalEnums.PlayerTurnState.DRAW
+			await execute_turn("HasUpkeepStepTrigger", "OnUpkeepStepComponent", GlobalEnums.PlayerTurnState.DRAW)
 		GlobalEnums.PlayerTurnState.DRAW:
-			var triggers = get_tree().get_nodes_in_group("HasOnDrawStepTrigger")
-			await execute_triggers(triggers, "OnDrawStepComponent")
 			await draw_card()
-			turn_state = GlobalEnums.PlayerTurnState.ACTION
+			await execute_turn("HasOnDrawStepTrigger", "OnDrawStepComponent", GlobalEnums.PlayerTurnState.ACTION)
 		GlobalEnums.PlayerTurnState.ACTION:
-			var triggers = get_tree().get_nodes_in_group("HasEndOfActionTrigger")
-			await execute_triggers(triggers, "OnEndOfActionStepComponent")
-			turn_state = GlobalEnums.PlayerTurnState.END
+			await execute_turn("HasEndOfActionStepTrigger", "OnEndOfActionStepComponent", GlobalEnums.PlayerTurnState.END)
 		GlobalEnums.PlayerTurnState.END:
-			var triggers = get_tree().get_nodes_in_group("HasEndOfTurnTrigger")
-			await execute_triggers(triggers, "OnEndOfTurnComponent")
-			turn_state = GlobalEnums.PlayerTurnState.OVER
+			await execute_turn("HasOnEndOfTurnTrigger", "OnEndOfTurnStep", GlobalEnums.PlayerTurnState.OVER)
 		GlobalEnums.PlayerTurnState.OVER:
-			var triggers = get_tree().get_nodes_in_group("HasBetweenTurnsTrigger")
-			await execute_triggers(triggers, "OnBetweenTurnsComponent")
-			turn_state = GlobalEnums.PlayerTurnState.UPKEEP
+			await execute_turn("HasBetweenTurnsTrigger", "OnBetweenTurnsComponent", GlobalEnums.PlayerTurnState.UPKEEP)
+			deck.cards_drawn_this_turn = 0
+
+
+func execute_turn(trigger_group : String, trigger_node_name : String, next_step : GlobalEnums.PlayerTurnState):
+	var triggers = get_tree().get_nodes_in_group(trigger_group)
+	print("	Current triggers in phase " + GlobalEnums.enum_string(turn_state, GlobalEnums.PlayerTurnState) + ":	", triggers)
+	await execute_triggers(triggers, trigger_node_name)
+	turn_state = next_step
 
 
 func execute_triggers(trigger_array : Array, trigger_node_name : String):
+	# print("Executing Triggers")
 	for node in trigger_array:
+		# print("		Hello")
 		if node.has_node(trigger_node_name):
+			# print("	Executing effects of card:	", node.name)
 			var trigger_node : TriggerHookComponent = node.get_node(trigger_node_name)
 			trigger_node.execute()
 			await trigger_node.all_effects_completed
@@ -61,7 +63,6 @@ func execute_triggers(trigger_array : Array, trigger_node_name : String):
 ## Check for deck to hook onto
 func _on_node_added(node):
 	if node.is_in_group("IsDeck"):
-		print("HIHIHIIHIHIHIHIHII")
 		deck = node
 		game_active = true
 		deck.card_drawn.connect(_on_card_drawn)

@@ -13,12 +13,8 @@ var flipped : bool = false
 var slottable_data : SlottableData
 
 func _ready():
-	call_deferred("_post_ready")
-
-
-func _post_ready():
-	var slottable_data : SlottableData = slottable_component.slottable_data
-	print(slottable_component)
+	slottable_data = slottable_component.slottable_data
+	print(name + " is in groups:	", get_groups())
 
 
 func rotate_card(time : float, original : Basis, target : Basis):

@@ -12,6 +12,7 @@ signal shuffled
 signal card_added_to_deck(card)
 signal deck_emptied()
 
+var cards_drawn_this_turn = 0
 
 func _ready():
 	BoardManager.deck = self
@@ -39,6 +40,8 @@ func shuffle():
 
 ## The next three pop a card PackedScene from the deck's array
 func draw() -> AbstractCard:
+	cards_drawn_this_turn += 1
+	print("Cards Drawn This Turn:	", cards_drawn_this_turn)
 	var new_card = cards.pop_front()
 	var card_scene : AbstractCard = InstantiateCard(new_card)
 	get_parent().add_child(card_scene)

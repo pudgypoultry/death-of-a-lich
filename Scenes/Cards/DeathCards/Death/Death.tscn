@@ -52,10 +52,10 @@ mesh = SubResource("QuadMesh_if033")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1273998511]
 shape = SubResource("BoxShape3D_3ujke")
 
-[node name="DragAndDropComponent" parent="." unique_id=532904837 instance=ExtResource("5_ko57s")]
+[node name="DragAndDropNode" parent="." unique_id=532904837 instance=ExtResource("5_ko57s")]
 
 [node name="SlottableNode" type="Node" parent="." unique_id=329753460 node_paths=PackedStringArray("drag_and_drop_node")]
 script = ExtResource("5_if033")
 slottable_data = SubResource("Resource_eflxi")
-drag_and_drop_node = NodePath("../DragAndDropComponent")
+drag_and_drop_node = NodePath("../DragAndDropNode")
 debug = true
