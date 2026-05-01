@@ -18,8 +18,9 @@ func _ready() -> void:
 
 func update_deck_visual():
 	var current_deck_size = len(deck_reference.cards)
-	for mesh in card_meshes:
-		mesh.queue_free()
+	if len(card_meshes) > 0:
+		for mesh in card_meshes:
+			mesh.queue_free()
 	if current_deck_size <= max_deck_size:
 		for i in range(current_deck_size):
 			card_meshes.append(card_image.instantiate())

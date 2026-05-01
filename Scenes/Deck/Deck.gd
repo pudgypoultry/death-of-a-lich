@@ -14,7 +14,6 @@ signal deck_emptied()
 
 
 func _ready():
-	deck_visual.update_deck_visual()
 	BoardManager.deck = self
 
 
@@ -55,7 +54,6 @@ func draw_from_bottom() -> AbstractCard:
 	get_parent().add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
-	deck_visual.update_deck_visual()
 	return card_scene
 
 
@@ -65,7 +63,6 @@ func draw_from_position(pos : int) -> AbstractCard:
 	get_tree().root.add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
-	deck_visual.update_deck_visual()
 	return card_scene
 
 
@@ -73,7 +70,6 @@ func draw_from_position(pos : int) -> AbstractCard:
 func add_card_at_position(pos : int, card_to_add : AbstractCard):
 	card_added_to_deck.emit(card_to_add)
 	cards.insert(pos, pack_card(card_to_add))
-	deck_visual.update_deck_visual()
 
 
 func add_card_to_top(card_to_add : AbstractCard):
