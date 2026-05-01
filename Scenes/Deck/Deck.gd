@@ -44,7 +44,7 @@ func draw() -> AbstractCard:
 	get_parent().add_child(card_scene)
 	card_drawn.emit(card_scene)
 	card_scene.global_position = draw_position.global_position
-	deck_visual.update_deck_visual()
+	# deck_visual.update_deck_visual()
 	return card_scene
 
 
@@ -97,5 +97,5 @@ func peek_at_bottom() -> PackedScene:
 ## Clears the deck's card array
 func empty_deck():
 	deck_emptied.emit()
-	deck_visual.update_deck_visual()
+	# deck_visual.update_deck_visual()
 	cards = []

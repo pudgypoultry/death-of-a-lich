@@ -63,6 +63,7 @@ func _process(delta: float) -> void:
 
 
 func pick_up():
+	print(actor_reference.slottable_data)
 	picking_up.emit(check_ray.get_collider())
 	if is_slottable:
 		highlight_potentials()

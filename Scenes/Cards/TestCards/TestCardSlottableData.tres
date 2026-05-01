@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="SlottableData" format=3 uid="uid://bdmgyrvjky226"]
+
+[ext_resource type="Script" uid="uid://bgjr6rkqf31qg" path="res://Assets/CustomResources/SlottableData.gd" id="1_jr3c2"]
+
+[resource]
+resource_local_to_scene = true
+script = ExtResource("1_jr3c2")
+card_name = "TestCard"
+description = "TestingTriggers"
+front_face_location = "res://CardArt/Events/The Mage.png"
+flavor_text = "Test"
+tags = Array[int]([3])
+card_type = 2
+metadata/_custom_type_script = "uid://bgjr6rkqf31qg"

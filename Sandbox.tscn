@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://b6f6rybmqw617" path="res://Scenes/Objects/StoneSlot/StoneSlot.tscn" id="7_fucb2"]
 [ext_resource type="Script" uid="uid://cjta08n0s0x6i" path="res://DebugLabels.gd" id="7_ns6gl"]
 [ext_resource type="PackedScene" uid="uid://dvk2ndec1swtf" path="res://Scenes/Objects/Tables/Table.tscn" id="7_ukipb"]
+[ext_resource type="PackedScene" uid="uid://co7pnmmh15ihr" path="res://Scenes/Cards/DeathCards/Death/Death.tscn" id="8_ns6gl"]
 
 [sub_resource type="Environment" id="Environment_ti018"]
 background_mode = 1
@@ -42,7 +43,7 @@ omni_range = 6.676762
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0, 2.5831087)
 
 [node name="Deck" parent="." unique_id=1142460259 instance=ExtResource("6_u6t3p")]
-cards = Array[PackedScene]([ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2")])
+cards = Array[PackedScene]([ExtResource("7_cgmw2"), ExtResource("8_ns6gl"), ExtResource("7_cgmw2"), ExtResource("7_cgmw2")])
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=755620725 node_paths=PackedStringArray("turn_phase_label")]
 script = ExtResource("7_ns6gl")

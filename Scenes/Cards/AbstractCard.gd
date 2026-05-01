@@ -6,12 +6,19 @@ class_name AbstractCard
 @onready var card_faces : Node3D = $CardFaces
 @onready var original_basis = card_faces.basis
 @onready var target_basis = original_basis.rotated(Vector3.LEFT, deg_to_rad(-90))
-@onready var slottable_data : SlottableData = slottable_component.slottable_data
 
 @export var front_texture_location : String
 
 var flipped : bool = false
+var slottable_data : SlottableData
 
+func _ready():
+	call_deferred("_post_ready")
+
+
+func _post_ready():
+	var slottable_data : SlottableData = slottable_component.slottable_data
+	print(slottable_component)
 
 
 func rotate_card(time : float, original : Basis, target : Basis):
