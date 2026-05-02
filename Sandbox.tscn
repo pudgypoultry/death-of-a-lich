@@ -9,6 +9,7 @@
 [ext_resource type="Script" uid="uid://cjta08n0s0x6i" path="res://DebugLabels.gd" id="7_ns6gl"]
 [ext_resource type="PackedScene" uid="uid://dvk2ndec1swtf" path="res://Scenes/Objects/Tables/Table.tscn" id="7_ukipb"]
 [ext_resource type="PackedScene" uid="uid://co7pnmmh15ihr" path="res://Scenes/Cards/DeathCards/Death/Death.tscn" id="8_ns6gl"]
+[ext_resource type="PackedScene" uid="uid://b10g6i6n74kh" path="res://Scenes/UI/UIManager.tscn" id="10_cgmw2"]
 
 [sub_resource type="Environment" id="Environment_ti018"]
 background_mode = 1
@@ -45,20 +46,22 @@ transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0, 0
 [node name="Deck" parent="." unique_id=1142460259 instance=ExtResource("6_u6t3p")]
 cards = Array[PackedScene]([ExtResource("7_cgmw2"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl"), ExtResource("8_ns6gl")])
 
-[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=755620725 node_paths=PackedStringArray("turn_phase_label")]
+[node name="DebugLayer" type="CanvasLayer" parent="." unique_id=755620725 node_paths=PackedStringArray("turn_phase_label")]
 script = ExtResource("7_ns6gl")
 turn_phase_label = NodePath("VBoxContainer/TurnStepDebugLabel")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer" unique_id=191613406]
+[node name="VBoxContainer" type="VBoxContainer" parent="DebugLayer" unique_id=191613406]
 offset_right = 40.0
 offset_bottom = 40.0
 
-[node name="TurnStepDebugLabel" type="Label" parent="CanvasLayer/VBoxContainer" unique_id=1537846564]
+[node name="TurnStepDebugLabel" type="Label" parent="DebugLayer/VBoxContainer" unique_id=1537846564]
 layout_mode = 2
 text = "Current Phase:"
 
-[node name="Button" type="Button" parent="CanvasLayer/VBoxContainer" unique_id=555054339]
+[node name="Button" type="Button" parent="DebugLayer/VBoxContainer" unique_id=555054339]
 layout_mode = 2
 text = "Progress Turn"
 
-[connection signal="pressed" from="CanvasLayer/VBoxContainer/Button" to="CanvasLayer" method="_progress_turn"]
+[node name="UIManager" parent="." unique_id=1806242243 instance=ExtResource("10_cgmw2")]
+
+[connection signal="pressed" from="DebugLayer/VBoxContainer/Button" to="DebugLayer" method="_progress_turn"]

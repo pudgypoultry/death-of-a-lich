@@ -22,6 +22,7 @@ func _ready():
 	get_tree().node_added.connect(_on_node_added)
 	get_tree().node_removed.connect(_on_node_removed)
 
+
 ## Management of Trigger Hooks and Turn Progression
 func progress_turn():
 	print("Look for triggers for phase:	", GlobalEnums.enum_string(turn_state, GlobalEnums.PlayerTurnState))
@@ -67,8 +68,6 @@ func _on_node_added(node):
 		game_active = true
 		deck.card_drawn.connect(_on_card_drawn)
 		deck.card_added_to_deck.connect(_on_card_destroyed)
-	if node is UIManager:
-		ui_manager = node
 
 
 func _on_node_removed(node):

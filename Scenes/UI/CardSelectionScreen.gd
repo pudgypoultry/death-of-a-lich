@@ -7,7 +7,7 @@ signal card_chosen(chosen_card : AbstractCard, unchosen_cards : Array)
 @export var card_selection_button : PackedScene
 
 
-func setup(cards_to_show : Array[AbstractCard]):
+func setup(cards_to_show : Array):
 	for card : AbstractCard in cards_to_show:
 		print_debug("Setting up:	", card.front_texture_location)
 		var button : TextureButton = card_selection_button.instantiate()

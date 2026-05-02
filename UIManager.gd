@@ -2,10 +2,10 @@ extends CanvasLayer
 class_name UIManager
 
 @export var card_selection_screen_scene : PackedScene
-@export var test_cards : Array[PackedScene] = []
 
 
-#func _ready():
+func _ready():
+	BoardManager.ui_manager = self
 	#var test_array : Array[AbstractCard] = []
 	#for card in test_cards:
 		#var new_card = card.instantiate()
@@ -13,8 +13,8 @@ class_name UIManager
 	#show_card_selection(test_array)
 
 
-func show_card_selection(cards: Array[PackedScene]) -> Node:
-	var screen = card_selection_screen_scene.instantiate()
+func show_card_selection(cards: Array) -> Node:
+	var screen : CardSelectionScreen = card_selection_screen_scene.instantiate()
 	add_child(screen)
 	var show_array = []
 	for card in cards:

@@ -6,11 +6,16 @@ class_name PeekXPick1
 var chosen_cards = []
 var unchosen_cards = []
 
+
 func execute():
 	var peek_array = []
 	for i in num_peek:
+		print("			POOOOOP")
 		peek_array.append(BoardManager.deck.peek_at_position(i))
-	
+	print("=============")
+	print(BoardManager)
+	print(BoardManager.ui_manager)
+	print("=============")
 	var pick_screen : CardSelectionScreen = BoardManager.ui_manager.show_card_selection(peek_array)
 	var result = await pick_screen.card_chosen
 	handle_card_chosen(result[0], result[1])
@@ -27,4 +32,5 @@ func handle_card_chosen(chosens : AbstractCard, unchosens : Array):
 
 
 func act_on_choice(card):
+	BoardManager.deck.add_card_to_top(card)
 	print("Player chose:	", card)
