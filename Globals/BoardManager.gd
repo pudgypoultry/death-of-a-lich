@@ -14,6 +14,7 @@ var focus_timer : float = 0.2
 var time_since_focus_change : float = 0.0
 var cards_in_play : Array[AbstractCard] = []
 var game_active : bool = false
+var is_advancing_turn : bool = false
 var deck : Deck
 var ui_manager : UIManager
 
@@ -25,6 +26,10 @@ func _ready():
 
 ## Management of Trigger Hooks and Turn Progression
 func progress_turn():
+	if is_advancing_turn:
+		print_debug("Trying to advance turn when can't do so...")
+		return
+	is_advancing_turn = true
 	print("Look for triggers for phase:	", GlobalEnums.enum_string(turn_state, GlobalEnums.PlayerTurnState))
 	match turn_state:
 		GlobalEnums.PlayerTurnState.UPKEEP:
@@ -39,6 +44,7 @@ func progress_turn():
 		GlobalEnums.PlayerTurnState.OVER:
 			await execute_turn("HasBetweenTurnsTrigger", "OnBetweenTurnsComponent", GlobalEnums.PlayerTurnState.UPKEEP)
 			deck.cards_drawn_this_turn = 0
+	is_advancing_turn = false
 
 
 func execute_turn(trigger_group : String, trigger_node_name : String, next_step : GlobalEnums.PlayerTurnState):

@@ -21,9 +21,9 @@ func show_card_selection(cards: Array) -> Node:
 		var new_card = card.instantiate()
 		show_array.append(new_card)
 	screen.setup(show_array)
-	screen.card_chosen.connect(handle_card_chosen)
+	#screen.card_chosen.connect(handle_card_chosen)
 	return screen
 
 
-func handle_card_chosen(card : AbstractCard):
-	print(card.name)
+#func handle_card_chosen(card : AbstractCard):
+	#print(card.name)
